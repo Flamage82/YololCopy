@@ -66,7 +66,7 @@ namespace YololCopy.ConsoleApp
             {
                 Console.WriteLine(
                     string.Format(
-                        "USAGE: {0} {{--copy|--paste|--clear}}",
+                        "USAGE: {0} [--copy|--paste|--clear]",
                         System.AppDomain.CurrentDomain.FriendlyName));
                 return Invoke.Bad;
             }
