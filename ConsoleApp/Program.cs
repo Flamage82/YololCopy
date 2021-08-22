@@ -16,6 +16,7 @@ namespace YololCopy.ConsoleApp
         private static extern bool SetForegroundWindow(IntPtr point);
         private static readonly int Rows = 20;
         private enum Invoke { Bad, Copy, Paste, Clear }
+        private static readonly int SleepTime = 50;
 
         public static void Main(string[] args)
         {
@@ -88,21 +89,21 @@ namespace YololCopy.ConsoleApp
             for(int i = 0; i < Rows; i++)
             {
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DOWN);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
             }
 
             for (int i = 0; i < Rows; i++)
             {
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.HOME);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.LSHIFT);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.END);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.LSHIFT);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DELETE);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.UP);
             }
         }
@@ -112,20 +113,20 @@ namespace YololCopy.ConsoleApp
             for (int i = 0; i < Rows; i++)
             {
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.UP);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
             }
             inputSimulator.Keyboard.KeyPress(VirtualKeyCode.HOME);
-            Thread.Sleep(50);
+            Thread.Sleep(SleepTime);
             
             foreach (var line in text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None))
             {
                 inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.LCONTROL, VirtualKeyCode.VK_X);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 ClipboardService.SetText(line);
                 inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.LCONTROL, VirtualKeyCode.VK_V);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DOWN);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
             }
         }
 
@@ -134,32 +135,32 @@ namespace YololCopy.ConsoleApp
             for (int i = 0; i < Rows; i++)
             {
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.UP);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
             }
             var sb = new StringBuilder();
             for(int i = 0; i < Rows; i++)
             {
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.HOME);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
 
 
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.LSHIFT);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.END);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.LSHIFT);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
 
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.LCONTROL);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.VK_C);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.LCONTROL);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
                 sb.AppendLine(ClipboardService.GetText());
 
                 inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DOWN);
-                Thread.Sleep(50);
+                Thread.Sleep(SleepTime);
             }
 
             ClipboardService.SetText(sb.ToString());
