@@ -117,7 +117,7 @@ namespace YololCopy.ConsoleApp
             inputSimulator.Keyboard.KeyPress(VirtualKeyCode.HOME);
             Thread.Sleep(50);
             
-            foreach (var line in text.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+            foreach (var line in text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None))
             {
                 inputSimulator.Keyboard.ModifiedKeyStroke(VirtualKeyCode.LCONTROL, VirtualKeyCode.VK_X);
                 Thread.Sleep(50);
